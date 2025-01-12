@@ -10,6 +10,14 @@ public class PetInDto {
     public PetInDto() {
     }
 
+    public PetInDto(Integer id, String name, Integer age, Integer ownerId, String ownerName) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.ownerId = ownerId;
+        this.ownerName = ownerName;
+    }
+
     public Integer getId() {
         return id;
     }

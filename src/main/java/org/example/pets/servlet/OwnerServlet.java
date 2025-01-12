@@ -13,6 +13,7 @@ import org.example.pets.servlet.dto.OwnerOutDto;
 
 import java.io.IOException;
 import java.io.Serial;
+import java.rmi.RemoteException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -60,7 +61,11 @@ public class OwnerServlet extends HttpServlet {
             resp.getWriter().print(objectMapper.writeValueAsString(ownerOutDto));
             resp.setStatus(201);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e.getMessage());
+            resp.setStatus(400);
+            resp.getWriter().print("Неправильный входной JSON. " + e.getMessage());
+        } catch (RuntimeException e) {
+            resp.setStatus(500);
+            resp.getWriter().print(e.getMessage());
         }
     }
 
