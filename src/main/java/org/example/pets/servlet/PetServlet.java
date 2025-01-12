@@ -62,7 +62,7 @@ public class PetServlet extends HttpServlet {
             resp.setStatus(201);
         } catch (JsonProcessingException e) {
             resp.setStatus(400);
-            resp.getWriter().print("Неверный файл JSON." + e.getMessage());
+            resp.getWriter().print("Неверный файл JSON" + e.getMessage());
         } catch (RuntimeException e) {
             resp.setStatus(500);
             resp.getWriter().print(e.getMessage());
@@ -92,7 +92,7 @@ public class PetServlet extends HttpServlet {
         Integer petId = getIdFromPathVariableOrSetErrorInResponse(req, resp);
 
         if (petId == null) {
-            return;
+            throw new RuntimeException("Id питомца не может быть пустым");
         }
 
         try {
@@ -115,7 +115,7 @@ public class PetServlet extends HttpServlet {
         Integer petId = getIdFromPathVariableOrSetErrorInResponse(req, resp);
 
         if (petId == null) {
-            return;
+            throw new RuntimeException("Id питомца не может быть пустым");
         }
 
         try {
@@ -148,7 +148,7 @@ public class PetServlet extends HttpServlet {
             resp.getWriter().print("Должна быть переменная \"id\"");
         } catch (NumberFormatException e) {
             resp.setStatus(400);
-            resp.getWriter().print("Питомец с таким id не существует");
+            resp.getWriter().print("Хозяин с таким id не существует");
         } catch (RuntimeException e) {
             resp.setStatus(500);
             resp.getWriter().print(e.getMessage());

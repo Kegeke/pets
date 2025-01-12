@@ -92,7 +92,7 @@ public class OwnerServlet extends HttpServlet {
         Integer ownerId = getIdFromPathVariableOrSetErrorInResponse(req, resp);
 
         if (ownerId == null) {
-            return;
+            throw new RuntimeException("Id хозяина не может быть пустым");
         }
 
         try {
@@ -115,7 +115,7 @@ public class OwnerServlet extends HttpServlet {
         Integer ownerId = getIdFromPathVariableOrSetErrorInResponse(req, resp);
 
         if (ownerId == null) {
-            return;
+            throw new RuntimeException("Id хозяина не может быть пустым");
         }
 
         try {
